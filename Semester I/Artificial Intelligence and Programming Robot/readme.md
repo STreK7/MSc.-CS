@@ -3,7 +3,7 @@
 | ------------ | -------------- | --------- |
 | TPGCSP101 | Practical Course on Artificial Intelligence and Programming Robot | 04 
 
-| **Sr. No** | **List of Practical Experiments on Artificial Intelligence and Programming Robot* |
+| **Sr. No** | **List of Practical Experiments on Artificial Intelligence and Programming Robot** |
 | ------- | ------------------------------------------------------------------ |
 | 1 | Write a program to implement Breadth First Search (BFS) algorithm for a given standard problem. |
 | 2 | Write a program to implement Hill Climbing algorithm for a given standard problem. |
