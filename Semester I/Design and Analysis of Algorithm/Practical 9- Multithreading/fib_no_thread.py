@@ -1,16 +1,29 @@
-import time
-import sys
-sys.setrecursionlimit(10000)
-print("Without Threading")
+import random
+from timeit import default_timer as timer
 
-start_time = time.time()
+#setting up random list
+x=[]
+n=2000
+for i in range(n):
+    x.append(random.randint(1000,10000))
 
+print("Without Threading in range (1000, 10000)")
+#timer start
+start = timer()
+arr = []
     
-def fib(x):
-    if(x < 1):
-        return 0
-    return x+fib(x-1)
+def fib(n):
+    a, b = 0, 1
+    for i in range(0, n):
+        a, b = b, a + b
+    return (a)
 
 
-print(fib(2100))
-print("Time taken %s seconds" % (time.time() - start_time))
+for i in range(0,len(x)):
+    arr.append(fib(x[i]))
+    #print("{0}: {1}".format(x[i], arr[i]))
+
+print("Time taken %s seconds" % (timer() - start))
+
+
+

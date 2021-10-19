@@ -1,40 +1,34 @@
-import threading 
-import queue
-import time
-import sys
-sys.setrecursionlimit(10000)
-print("With Threading")
-start_time = time.time()
+import queue, threading, random
+from timeit import default_timer as timer
+
+#setting up random list
+x=[]
+n=200
+for i in range(n):
+    x.append(random.randint(1000,10000))
+    
+print("With Threading in range (1000, 10000)")
+
+#timer start
+start = timer()
+q = queue.Queue()
+
+
+def fib(n):
+    a, b = 0, 1
+    for i in range(0, n):
+        a, b = b, a + b
+    q.put((n, a))
+    return
+
+for i in x:
+    t = threading.Thread(target=fib, args = (i,))
+    t.daemon = True
+    t.start()
+
+while not q.empty():
+    n, f = q.get()
+    #print ("{0}: {1}".format(n, f))
 
     
-def fib(x, stop):
-    if(x < stop):
-        return 0
-    #print(f"{threading.currentThread().getName()} value {x} \n")
-    return x+fib(x-1, stop)
-
-
-que = queue.Queue()
-threads_list = list()
-x = 2100
-h1 = x
-h2 = int(abs(x/2))
-stop = h2+1
-fib_thread1 = threading.Thread(target=lambda q, arg1: q.put(fib(arg1, stop)), args=(que, h1))
-fib_thread1.start()
-threads_list.append(fib_thread1)
-fib_thread2 = threading.Thread(target=lambda q, arg1: q.put(fib(arg1, 0)), args=(que, h2))
-fib_thread2.start()
-threads_list.append(fib_thread2)
-
-for t in threads_list:
-    t.join()
-
-total = 0
-while not que.empty():
-    result = que.get()
-    total = total + result
-print(total)
-
-
-print("Time taken %s seconds" % (time.time() - start_time))
+print("Time taken %s seconds" % (timer() - start))
