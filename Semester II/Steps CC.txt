@@ -1,0 +1,110 @@
+create vpc 
+10.0.0.0/16
+
+create gateway
+attach to vpc
+
+create subnet
+Public-Subnet
+10.0.1.0/24
+
+Private-Subnet
+10.0.2.0/24
+
+Create routs
+Edit name to Private-RT
+Edit subnet Association
+
+Create Security Group
+Edit inbound rules
+All traffic custome sg-nmber
+All traffic my ip
+
+Default aci 
+
+
+E2C 
+Create Public instance
+Amazon linux
+Create new key pair
+choose first image
+choose free tier enabled
+
+Configure instance detail
+network -- vpc created
+subnet  -- public Subnet
+
+Select security group 
+
+instance public ipv4 from insatnce detail
+
+ping adress instance cmd
+
+Create a new instance with same setting but private subnet and try to ping 
+ping fails
+
+
+
+Practical 7 IAM
+search iam
+iam dashboard
+add MAF
+Activate MFA
+Autthy fro android
+
+
+
+in Aws now
+scan qr fro authy
+enter 2 consecutive MFA codes
+assign mfa
+log out and log in to show
+
+
+
+Creat user
+IAM
+User
+Add user
+password option 
+next tags
+add tags
+create
+
+
+Create User groups
+Iam 
+user group
+create
+name
+Add user to group
+click create group
+add policies 
+create
+
+create policies
+select user you want to update the queries for (part of creating user)
+create a group
+add polices and generate
+
+
+
+DynamoDb
+table 
+create
+name
+give primary key rollno
+create table
+
+Select the table
+Action
+Create item  do this for 3-4 items
+again create item 
+name and phone number
+
+scan query
+
+rollno type numer equal to 4
+run	
+
+delete table
