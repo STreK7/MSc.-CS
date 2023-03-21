@@ -1,0 +1,90 @@
+PRACTICAL1
+create a vpc ->vpc and more -> name and ipv4 cidr 10.0.0.0/16 ->enable dns hostname and resolution
+
+Goto subnets yo uhave 4 new subnets -for each public subnet select subnet ->action ->change subnet settings ->auto assign ipv4
+
+go into route table check for a route table with main yes and click on it below go into subnet association then bottom explicit association add subnet  -> add both public subnet
+then same edit routes add route -> 00.0.0.0/0 target internet gateway select gatewat ->save
+
+Nat gateway -> create -> subnet select public-1a ->create
+
+route table -> select private-route-1a ->edit route -> add route ->0.0.0.0/0 ->natgateway
+
+copy the vpc-id from vpc page
+
+security group->create new ->name = Public1A -> enter the copied vpc -> add inbound rule type-all traffic -> outbound rule -all traffic
+
+create ec2 instance -> name= Public1a-> edit network settings change vpc to one you created -> change subnet to public-1a-> security group to one you created
+
+create ec2 instance -> name= Public1b-> edit network settings change vpc to one you created -> change subnet to public-1b-> security group to one you created
+
+create ec2 instance -> name= private1b> edit network settings change vpc to one you created -> change subnet to private1b-> security group to one you created
+
+
+lauch -> public 1b -> ping public ipv4 private address of private 1b instance
+if ping successful then vpc is working
+-------------------------------------------------------------------------------
+Practical 2
+create ec2 instance 
+
+in script........
+#!/bin/bash
+# Use this for your user data (script from top to bottom)
+# install httpd (Linux 2 version)
+yum update -y
+yum install -y httpd
+systemctl start httpd
+systemctl enable httpd
+echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
+
+-------------------------------------------------------------------------------
+Practical 3
+Service offering - ec2 
+disk offering - s3 create bucket
+network offering - VPC, LoadBalancing
+templates - ec2 page 
+instance -> lanch templates
+-------------------------------------------------------------------------------
+Practical 4
+lifecycle - ec2 instance create then state-> creating ,starting, running ,etc
+go to instance then select vm then actions then connect
+sudo nano /etc/cloud/cloud.cfg
+preserve_hostname: true
+ctrl+o +enter to save
+ctrl+x then enter to exit
+sudo hostnamectl set-hostname webserver.mydomain.com
+sudo reboot
+hostname
+-------------------------------------------------------------------------------
+Practical 5
+Create security group  vpc and one subnet thena attach to ec2 like prac1->goto instance and change network setting
+ec2 instance -> connect -> ssh -> open putty -> past the ec2-13-232-144-122.ap-south-1.compute.amazonaws.com -port 22 -> connection-ssh-creds -> browse file select key->okay start -> login in as ec2-user
+-------------------------------------------------------------------------------
+Practical 6
+primary
+winscp -> sftp -> hostname -> ec2-user -> advance -> ssh -> auth -> add key file then connect
+secondary
+s3 bucket
+-------------------------------------------------------------------------------
+
+Practical 7
+instance - EBS- volumes -create - open volumes - action -attach volumes
+how to check
+windows then disk managment
+linux - sudo lsblk
+create snapshot
+
+-------------------------------------------------------------------------------
+Practical 8
+Ec2 -> tags -> manage tags
+cloudwatch ->metrics ->all metrics -> graph metrics -> add metrics -> EC2 -> pre-instance metrics -> search for CPUUtilization and select instance to check
+
+-------------------------------------------------------------------------------
+Practical 9
+
+-------------------------------------------------------------------------------
+
+Practical 10 
+ec2 -> select ->action ->monitoring and alarms -> Cloudwatch - >create -> add to dashboard -> create
+sudo yum install stress
+stress -c 4
